@@ -10,8 +10,8 @@ def clean_text(text: str) -> str:
     """Normalize common OCR noise and return lowercase text."""
     text = text.lower()
     text = text.replace("ﬁ", "fi").replace("ﬂ", "fl")
-    text = re.sub(r"[|{}<>]", " ", text)
     text = re.sub(r"\bq(?:uestion)?\s*\d{1,2}\b", " ", text)
+    text = re.sub(r"[^a-z0-9\s]", " ", text)
     text = re.sub(r"\s+", " ", text)
     return text.strip()
 
